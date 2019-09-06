@@ -58,7 +58,7 @@
                 $("#createContent").click(function() {
                     var token = $("#authToken").val().trim();
                     var authHeader = { 'Authorization' : 'Basic ' + btoa(""+":"+token)}
-                    var backlogUrl = 'https://analytics.dev.azure.com/TBS-OCIO-ESP/gc-earb/_odata/v2.0/WorkItems?$select=Title,State&$filter=WorkItemType%20eq%20%27Meeting%27&$expand=Children($select=Title,WorkItemType,Custom_Department)';
+                    var backlogUrl = 'https://analytics.dev.azure.com/TBS-OCIO-ESP/gc-earb/_odata/v2.0/WorkItems?$select=Title,State&$filter=WorkItemType%20eq%20%27Meeting%27%20and%20State%20eq%20%27Committed%27&$expand=Children($select=Title,WorkItemType,Custom_Department)';
                 
                     $.ajax(
                         {
