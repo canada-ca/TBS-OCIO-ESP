@@ -1,0 +1,122 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>EARB Forward Agenda Data Tool</title>
+
+    <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/cdts/compiled/soyutils.js"></script>
+    <script type="text/javascript" src="https://www.canada.ca/etc/designs/canada/cdts/gcweb/v4_0_31/cdts/compiled/wet-en.js"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script type="text/javascript">
+        document.write(wet.builder.refTop({"cdnEnv":"prod","isApplication":false}));
+    </script>
+</head>
+<body>
+    <div id="def-top">
+    <!-- Write closure fall-back static file -->
+                
+    </div>
+
+    <script type="text/javascript">
+        var defTop = document.getElementById("def-top");
+        defTop.outerHTML = wet.builder.top({"cdnEnv":"prod","breadcrumbs":false,"search":false,"showPreContent":false,"topSecMenu":false,"siteMenu":false});
+    </script>
+
+    <div class="container">
+            <div class="alert alert-danger">
+                <p lang="fr-CA">Français - Il s'agit d'un outil interne au groupe d'architecture d'entreprise du gouvernement du Canada. Il est fourni à des fins de référence et n'est pas pris en charge pour un usage public pour le moment. Vous pouvez accéder au programme suivant, <a href="https://wiki.gccollab.ca/EARB_Forward_Agenda"> ici</a>. </p>
+            </div>
+
+            <div class="alert alert-danger">
+                <p lang="en-CA">English - This is an internal tool for the Government of Canada, Enterprise Architecture Group. It is provided for reference purpose, and is not supported for public use at this time. You can access the Forward Agenda <a href="https://wiki.gccollab.ca/EARB_Forward_Agenda">here</a>.</p>
+            </div>
+
+            <h1>GC-EARB Forward Agenda API Tool</h1>
+            <br/>
+
+            <div class="alert alert-info">
+                <p>To use this tool, provide a valid Authorization Token, then click Create Content to produce the Forward Agenda. Then click copy content to copy the agenda to the clipboard.</p>
+            </div>
+
+            <label>Authorization Token</label>
+            <input type='text' id='authToken' />
+            <button id="createContent">Create Content</button>
+            <button id="copyContent">Copy Content</button>
+            <br/>
+            <div id="content"></div>
+        
+            <textarea id="contentHtml" style="visibility:hidden"></textarea>
+    </div>
+
+    <script>
+            $(document).ready(function() {
+    
+                $("#createContent").click(function() {
+                    var token = $("#authToken").val().trim();
+                    var authHeader = { 'Authorization' : 'Basic ' + btoa(""+":"+token)}
+                    var backlogUrl = 'https://analytics.dev.azure.com/TBS-OCIO-ESP/gc-earb/_odata/v2.0/WorkItems?$select=Title,State&$filter=WorkItemType%20eq%20%27Meeting%27&$expand=Children($select=Title,WorkItemType,Custom_Department)';
+                
+                    $.ajax(
+                        {
+                            url: backlogUrl,
+                            headers: authHeader
+                        }
+                    ).done(function(data) {
+                        console.log(data.value);
+                        
+                        var d = new Date();
+                        var strDate = d.getFullYear() + "/" + (d.getMonth()+1) + "/" + d.getDate();
+        
+                        $("#content").append("{{OCIO_GCEARB_Header}}");
+                        $("#content").append("<div style='color: black; padding: 3px; text-align:right; font: arial;'>This page was last updated on "+strDate+"</div>")
+                        $("#content").append("<div style='color: black; padding: 3px; text-align:right; font: arial;'>This page was originally generated in the ☁ via API</div>")
+        
+
+                        $.each(data.value, function(id) {
+                            var meeting = data.value[id];
+        
+                            $("#content").append("<table class='wikitable sortable nowrap' style='width:100%' id='meeting"+id+"'></table>");
+        
+                            $("#meeting"+ id).append("<caption style='font-size:1.2em; text-align:left;'>"+meeting.Title + "</caption>");
+                            $("#meeting"+ id).append("<tr><th>Item for Presentation</th><th>Presenter</th><th>Purpose</th></tr>");
+                            
+                            $.each(meeting.Children, function(cid) {
+                                var child = meeting.Children[cid];
+                                $("#meeting" + id).append("<tr>")
+                                $("#meeting" + id).append("<td style='width:50%'>"+child.Title+"</td>");
+                                $("#meeting" + id).append("<td style='width:25%'>"+child.Custom_Department+"</td>");
+                                $("#meeting" + id).append("<td style='width:25%'>"+child.WorkItemType+"</td>");
+                                $("#meeting" + id).append("</tr>")
+                            });
+        
+                            $("#content").append("<br/>");
+                        });
+                    });
+                });
+    
+                $("#copyContent").click(function() {
+                    var copiedHtml = $("#content").html();
+
+                    $("#contentHtml").css("visibility", "visible");
+                    $("#contentHtml").val(copiedHtml);
+    
+                    var element = $("#contentHtml")[0];
+    
+                    element.select();
+                    element.setSelectionRange(0, 99999999);
+                    
+                    document.execCommand("copy");
+
+                    $("#contentHtml").css("visibility", "hidden");
+    
+                    alert("The content has been copied to the clipeboard.");
+                });
+    
+            });
+        </script>
+</body>
+</html>
