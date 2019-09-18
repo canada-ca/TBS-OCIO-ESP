@@ -58,7 +58,7 @@
                 $("#createContent").click(function() {
                     var token = $("#authToken").val().trim();
                     var authHeader = { 'Authorization' : 'Basic ' + btoa(""+":"+token)}
-                    var backlogUrl = 'https://analytics.dev.azure.com/TBS-OCIO-ESP/gc-earb/_odata/v2.0/WorkItems?$select=Title,State&$filter=WorkItemType%20eq%20%27Meeting%27%20and%20State%20eq%20%27Committed%27&$expand=Children($select=Title,WorkItemType,Custom_Department)';
+                    var backlogUrl = 'https://analytics.dev.azure.com/TBS-OCIO-ESP/gc-earb/_odata/v2.0/WorkItems?$select=Title,State&$filter=WorkItemType%20eq%20%27Meeting%27%20and%20State%20eq%20%27Committed%27&$expand=Children($select=Title,WorkItemType,Custom_Department,BacklogPriority)';
                 
                     $.ajax(
                         {
@@ -84,6 +84,10 @@
                             $("#meeting"+ id).append("<caption style='font-size:1.2em; text-align:left;'>"+meeting.Title + "</caption>");
                             $("#meeting"+ id).append("<tr><th>Item for Presentation</th><th>Presenter</th><th>Purpose</th></tr>");
                             
+                            meeting.Children.sort(function(a, b) {
+                                return a.BacklogPriority-b.BacklogPriority;
+                            });
+
                             $.each(meeting.Children, function(cid) {
                                 var child = meeting.Children[cid];
                                 $("#meeting" + id).append("<tr>")
