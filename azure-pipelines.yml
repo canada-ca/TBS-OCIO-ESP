@@ -1,5 +1,5 @@
 schedules:
-- cron: "* */6 * * *"
+- cron: "0 */6 * * *"
   displayName: Run every 6 hours
   branches:
     include:
