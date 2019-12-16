@@ -1,9 +1,10 @@
 schedules:
-- cron: "0 */6 * * *"
+- cron: '0 */6 * * *'
   displayName: Run every 6 hours
   branches:
     include:
-    - master
+    - master  
+  always: 'true'
 
 pool:
   vmImage: windows-latest
