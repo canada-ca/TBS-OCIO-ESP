@@ -12,6 +12,7 @@ pool:
 steps:
 - task: PowerShell@2
   env:
+    # Create bot password from https://wiki.gccollab.ca/Special:BotPasswords
     WIKI_USER: $(WIKI_USER)
     WIKI_PASSWORD: $(WIKI_PASSWORD)
     ADO_TOKEN: $(ADO_TOKEN)
