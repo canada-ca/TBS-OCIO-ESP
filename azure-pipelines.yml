@@ -22,15 +22,15 @@ steps:
       $wikiTitle = $env:WIKI_TITLE
       $username = $env:WIKI_USER
       $password = $env:WIKI_PASSWORD
+      $forwardAgendaQuery = 'https://analytics.dev.azure.com/TBS-OCIO-ESP/gc-earb/_odata/v2.0/WorkItems?$select=Title,State&$filter=WorkItemType%20eq%20%27Meeting%27%20and%20State%20eq%20%27Committed%27&$expand=Children($select=Title,WorkItemType,Custom_Department,BacklogPriority,State)';
 
-      function Get-QueryResultsTable($token)
+      function Get-QueryResultsTable($token, $backlogUrl)
       {
           if ($null -eq $token) 
           {
             throw('Missing token value')
           }
           $authHeader = @{ 'Authorization' = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":" + $token)) }
-          $backlogUrl = 'https://analytics.dev.azure.com/TBS-OCIO-ESP/gc-earb/_odata/v2.0/WorkItems?$select=Title,State&$filter=WorkItemType%20eq%20%27Meeting%27%20and%20State%20eq%20%27Committed%27&$expand=Children($select=Title,WorkItemType,Custom_Department,BacklogPriority,State)';
       
           $result = Invoke-RestMethod -Method Get -Uri $backlogUrl -Headers $authHeader
       
@@ -215,6 +215,6 @@ steps:
           }
       }
       
-      Edit-Page $wikiTitle (Get-QueryResultsTable $env:ADO_TOKEN)
+      Edit-Page $wikiTitle (Get-QueryResultsTable $env:ADO_TOKEN $forwardAgendaQuery)
       
       Invoke-Logout
