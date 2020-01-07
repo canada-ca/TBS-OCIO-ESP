@@ -1,0 +1,261 @@
+schedules:
+- cron: '0 */6 * * *'
+  displayName: Run every 6 hours
+  branches:
+    include:
+    - master  
+  always: 'true'
+
+pool:
+  vmImage: windows-latest
+
+steps:
+- task: PowerShell@2
+  env:
+    # Create bot password from https://wiki.gccollab.ca/Special:BotPasswords
+    WIKI_USER: $(WIKI_USER)
+    WIKI_PASSWORD: $(WIKI_PASSWORD)
+    ADO_TOKEN: $(ADO_TOKEN)
+  inputs:
+    targetType: 'inline'
+    script: |
+      $wikiTitle = $env:WIKI_TITLE
+      $username = $env:WIKI_USER
+      $password = $env:WIKI_PASSWORD
+      $forwardAgendaQuery = 'https://analytics.dev.azure.com/TBS-OCIO-ESP/_odata/v1.0/WorkItems?$select=WorkItemType,%20State,%20Title,%20Custom_Department,%20BacklogPriority&$expand=Iteration($select=IterationPath),%20Links($select=TargetWorkItem;%20$filter=(TargetWorkItem/Project/ProjectName%20eq%20%27gc-earb%27)%20and%20(LinkTypeReferenceName%20eq%20%27System.LinkTypes.Hierarchy-Forward%27);%20$expand=TargetWorkItem($select=WorkItemType,%20State,%20Title,%20Custom_Department,%20BacklogPriority;%20$expand=Iteration($select=IterationPath)))&$filter=(Project/ProjectName%20eq%20%27gc-earb%27%20AND%20WorkItemType%20eq%20%27Meeting%27%20AND%20(State%20eq%20%27Committed%27))%20and%20Links/any(l:%20(l/TargetWorkItem/Project/ProjectName%20eq%20%27gc-earb%27)%20and%20(l/LinkTypeReferenceName%20eq%20%27System.LinkTypes.Hierarchy-Forward%27))&$orderby=Iteration/IterationPath%20asc,%20WorkItemId%20asc';
+
+      function Get-QueryResultsTable($token, $odataQuery)
+      {
+          if ($null -eq $token) 
+          {
+              throw('Missing token value')
+          }
+
+          if ($null -eq $odataQuery) 
+          {
+              throw('Missing OData query')
+          }
+
+          $authHeader = @{ 'Authorization' = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":" + $token)) }
+
+          $result = Invoke-RestMethod -Method Get -Uri $odataQuery -Headers $authHeader
+
+          $meetings = $result.value
+
+          $wikicontent = "{{OCIO_GCEARB_Header}}`n<multilang>`n"
+          $englishcontent = "@en|__NOTOC__`n<div style='color: black; padding: 3px; text-align:right; font: arial;'>This page was modified on " + (Get-Date -format "yyyy/MM/dd HH:mm") + "</div>`n"
+          $frenchcontent = "@fr|__NOTOC__`n<div style='color: black; padding: 3px; text-align:right; font: arial;'>Cette page a été modifiée le 2019-12-01 " + (Get-Date -format "yyyy/MM/dd HH:mm") + "</div>`n"
+          $frCulture = New-Object system.globalization.cultureinfo('fr-CA')
+
+          foreach($meeting in $meetings)
+          {
+              $iteration = $meeting.Iteration.IterationPath.Split('\')[1]
+              $title = (Get-Date -Date "$iteration").ToString('D')
+              $titleFr = (Get-Date -Date "$iteration").ToString('D', $frCulture)
+              if ($meeting.State -eq 'Cancelled')
+              {
+                  $englishcontent += "<h2>" + $title + " - <span style='color:red;'>CANCELED</span></h2>`n<table class='wikitable sortable nowrap' style='width:100%'>";
+                  $frenchcontent += "<h2>" + $titleFr + " - <span style='color:red;'>ANNULÉ</span></h2>`n<table class='wikitable sortable nowrap' style='width:100%'>";
+              }
+              else
+              {
+                  $englishcontent += "<h2>" + $title + "</h2>`n<table class='wikitable sortable nowrap' style='width:100%'>";
+                  $frenchcontent += "<h2>" + $titleFr + "</h2>`n<table class='wikitable sortable nowrap' style='width:100%'>";
+              }
+              $englishcontent += "`n<tr>`n<th>Item for Presentation</th>`n<th>Presenter</th>`n<th>Purpose</th>`n</tr>"
+              $frenchcontent += "`n<tr>`n<th>Points présentés</th>`n<th>Présentateur</th>`n<th>Objet</th>`n</tr>"
+
+              $meetingItems = $meeting.Links.TargetWorkItem | Sort-Object -Property BacklogPriority
+
+              # Go over children
+              foreach($meetingItem in $meetingItems)
+              {
+                  if ($meetingItem.State -eq 'Cancelled')
+                  {
+                      continue
+                  }
+                  $englishcontent += "`n<tr>`n<td style='width:50%'>" + $meetingItem.Title + "</td>`n<td style='width:25%'>" + $meetingItem.Custom_Department + "</td>`n<td style='width:25%'>" + $meetingItem.WorkItemType + "</td>`n</tr>"
+                  
+                  if ($meetingItem.WorkItemType -eq 'Endorsement')
+                  {
+                      $purpose = 'Approbation'
+                  
+                  }
+                  elseif ($meetingItem.WorkItemType -eq 'Consent')
+                  {
+                      $purpose = 'Consentement'
+                  }
+                  else
+                  {
+                      $purpose = $meetingItem.WorkItemType
+                  }
+
+                  $frenchcontent += "`n<tr>`n<td style='width:50%'>" + $meetingItem.Title + "</td>`n<td style='width:25%'>" + $meetingItem.Custom_Department + "</td>`n<td style='width:25%'>" + $purpose + "</td>`n</tr>"
+              }
+
+              $englishcontent += "`n</table>`n<br/>`n"
+              $frenchcontent += "`n</table>`n<br/>`n"
+          }
+          $wikicontent += $englishcontent
+          $wikicontent += $frenchcontent
+          $wikicontent += "`n</multilang>`n{{OCIO_GCEARB_Footer}}"
+          return $wikicontent
+      }
+      
+      # Upload to Wiki from https://en.wikiversity.org/wiki/MediaWiki_API/PowerShell
+      $protocol = 'https://'
+      $wiki = 'wiki.gccollab.ca/'
+      $api = 'api.php'
+      
+      # For old cypher suite compat
+      [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+      
+      $csrftoken
+      $websession
+      $wikiversion
+      
+      function Invoke-Login($username, $password)
+      {
+          $uri = $protocol + $wiki + $api
+      
+          $body = @{}
+          $body.action = 'login'
+          $body.format = 'json'
+          $body.lgname = $username
+          $body.lgpassword = $password
+      
+          $object = Invoke-WebRequest $uri -Method Post -Body $body -SessionVariable global:websession
+          $json = $object.Content
+          $object = ConvertFrom-Json $json
+      
+          if($object.login.result -eq 'NeedToken')
+          {
+              $uri = $protocol + $wiki + $api
+      
+              $body.action = 'login'
+              $body.format = 'json'
+              $body.lgname = $username
+              $body.lgpassword = $password
+              $body.lgtoken = $object.login.token
+      
+              $object = Invoke-WebRequest $uri -Method Post -Body $body -WebSession $global:websession
+              $json = $object.Content
+              $object = ConvertFrom-Json $json
+          }
+          if($object.login.result -ne 'Success')
+          {
+              throw ('Login.result = ' + $object.login.result)
+          }
+      }
+      
+      function Invoke-Logout()
+      {
+          $uri = $protocol + $wiki + $api
+          
+          $body = @{}
+          $body.action = 'logout'
+          $body.format = 'json'
+      
+          $object = Invoke-WebRequest $uri -Method Get -Body $body -WebSession (Get-WebSession)
+          
+          Clear-Variables
+      }
+      
+      function Clear-Variables()
+      {
+          if($csrftoken -ne $null)
+          {
+              Clear-Variable csrftoken -Scope Global
+          }
+          if($websession -ne $null)
+          {
+              Clear-Variable websession -Scope Global
+          }
+          if($wikiversion -ne $null)
+          {
+              Clear-Variable wikiversion -Scope Global
+          }
+      }
+      
+      function Get-WebSession()
+      {
+          if($websession -eq $null)
+          {
+              Invoke-LogIn $username $password
+          }
+          return $websession
+      }
+      
+      function Get-CsrfToken()
+      {
+          if($csrftoken -eq $null)
+          {
+              $uri = $protocol + $wiki + $api
+      
+              $body = @{}
+              $body.action = 'query'
+              $body.format = 'json'
+              $body.meta = 'tokens'
+              $body.type = 'csrf'
+      
+              $object = Invoke-WebRequest $uri -Method Get -Body $body -WebSession (Get-WebSession)
+              $json = $object.Content
+              $object = ConvertFrom-Json $json
+      
+              $csrftoken = $object.query.tokens.csrftoken
+          }
+      
+          return $csrftoken
+      }
+      
+      function Get-Page($title)
+      {
+          $uri = $protocol + $wiki + 'index.php'
+          
+          $body = @{}
+          $body.action = 'raw'
+          $body.title = $title
+      
+          try
+          {
+              $object = Invoke-WebRequest $uri -Method Get -Body $body -WebSession (Get-WebSession)
+              $result = $object.Content
+          }
+          catch [Net.WebException] 
+          {
+              if($error.Exception.ToString().IndexOf('404') -lt 0)
+              {
+                  throw('Unexpected message returned from Get-Page ' + $title + ': ' + $error.Exception.ToString())
+                  exit
+              }
+              $result = ''
+          }
+          return $result
+      }
+      
+      function Edit-Page($title, $text)
+      {
+          $uri = $protocol + $wiki + $api
+          
+          $body = @{}
+          $body.action = 'edit'
+          $body.bot = 1
+          $body.title = $title
+          $body.text = $text
+          $body.token = Get-CsrfToken
+          $body.format = 'json'
+      
+          $object = Invoke-WebRequest $uri -Method Post -Body $body -WebSession (Get-WebSession)
+          $json = $object.Content
+          $object = ConvertFrom-Json $json
+      
+          if($object.edit.result -ne 'Success')
+          {
+              throw('Error adding section:' + $object + ',' + $object.error)
+      
+          }
+      }
+      
+      Edit-Page $wikiTitle (Get-QueryResultsTable $env:ADO_TOKEN $forwardAgendaQuery)
+      
+      Invoke-Logout
