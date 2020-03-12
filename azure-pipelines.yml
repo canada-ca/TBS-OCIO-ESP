@@ -6,6 +6,9 @@ schedules:
     - master  
   always: 'true'
 
+# A pipeline with no CI trigger
+trigger: none
+
 pool:
   vmImage: windows-latest
 
