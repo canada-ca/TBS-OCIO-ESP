@@ -46,8 +46,8 @@ steps:
           $meetings = $result.value
 
           $wikicontent = "{{OCIO_GCEARB_Header}}`n<multilang>`n"
-          $englishcontent = "@en|__NOTOC__`n<div style='color: black; padding: 3px; text-align:right; font: arial;'>This page was modified on " + (Get-Date -format "yyyy/MM/dd HH:mm") + "</div>`n"
-          $frenchcontent = "@fr|__NOTOC__`n<div style='color: black; padding: 3px; text-align:right; font: arial;'>Cette page a été modifiée le 2019-12-01 " + (Get-Date -format "yyyy/MM/dd HH:mm") + "</div>`n"
+          $englishcontent = "@en|__NOTOC__`n<div style='color: black; padding: 3px; text-align:right; font: arial;'>This page was modified on {{time ago|{{REVISIONTIMESTAMP}}}}</div>`n"
+          $frenchcontent = "@fr|__NOTOC__`n<div style='color: black; padding: 3px; text-align:right; font: arial;'>Cette page a été modifiée le 2019-12-01 {{time ago|{{REVISIONTIMESTAMP}}}}</div>`n"
           $frCulture = New-Object system.globalization.cultureinfo('fr-CA')
 
           foreach($meeting in $meetings)
