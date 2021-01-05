@@ -101,7 +101,7 @@ steps:
           }
           $wikicontent += $englishcontent
           $wikicontent += $frenchcontent
-          $wikicontent += "`n</multilang>`n{{OCIO_GCEARB_Footer}}"
+          $wikicontent += "`n</multilang>`n"
           return $wikicontent
       }
       
