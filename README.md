@@ -1,4 +1,4 @@
-title: Metrics for Government of Canada Technology Consumption
+<h1> Metrics for Government of Canada Technology Consumption </h1>
 
 
 | **Category**                                      | **Metric**                                                                                                           | **Details**                                                                             | **Metric Owner**                             |
@@ -40,7 +40,7 @@ title: Metrics for Government of Canada Technology Consumption
 | Contact Centre Services                           | Concurrent number of agents per month                                                                                |                                                                                         | Shared Services Canada                       |
 |                                                   | Peak agent usage per month                                                                                           |                                                                                         | Shared Services Canada                       |
 
-Mesures de l’utilisation de la technologie au gouvernement du Canada
+<h1>Mesures de l’utilisation de la technologie au gouvernement du Canada</h1>
 
 | **Catégorie**                                            | **Unité de mesure**                                                                                                          | **Détails**                                                                                                       | **Responsable de la mesure**                |
 |----------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------|---------------------------------------------|
