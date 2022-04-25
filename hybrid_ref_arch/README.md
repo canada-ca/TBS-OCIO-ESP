@@ -11,6 +11,8 @@ Hybrid Work (office + remote) Reference Architecture
 
 [3. Policy References][3]
 
+[4. Reference Architecture Overview](#ref_arch_overview)
+
 [5. User Technology][4]
 
 > [5.1. GC User vs GC Field User][5]
@@ -91,7 +93,7 @@ Standard on Information Technology Provisions
 
 [[https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32674]{.underline}][29]
 
-# Reference Architecture Overview
+# Reference Architecture Overview<a name="ref_arch_overview"></a>
 
 Illustrated, the Hybrid Work Architecture is below.
 
