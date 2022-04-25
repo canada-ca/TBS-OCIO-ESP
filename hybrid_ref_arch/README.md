@@ -205,7 +205,7 @@ With GC Secure Remote Access having been scaled to support the pandemic, there i
 
 Commercial internet must be, to the maximum extent possible, deployed wirelessly and broadcast through-out the building. At a minimum, two SSIDs should be available. The first will restrict connectivity to GC devices and the second SSID will be for guest devices and be appropriately throttled. GC devices include compute devices, conferencing/collaboration devices, printers, and smartphones to support wi-fi calling.
 
-## <a name="#cellular-network-optional">8.1 Cellular network (optional)</a>
+## <a name="cellular-network-optional">8.1 Cellular network (optional)</a>
 
 Commercial cellular network may be broadcast from outside of the GC facility. Pico cells or in-facility cellular networks will no longer be deployed. In cases where cellular network performance is insufficient to support smartphones, wi-fi calling will be sufficient for supporting smartphones within GC facilities.
 
