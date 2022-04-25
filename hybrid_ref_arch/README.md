@@ -35,7 +35,7 @@ Hybrid Work (office + remote) Reference Architecture
 >
 > [6.2.2. Collaboration Spaces][15]
 >
-> [6.2.3. GCSI Terminal (optional)] [16]
+> [6.2.3. GCSI Terminal (optional)][16]
 >
 > [6.2.4. Fixed Line Telephones (limited/optional)][17]
 >
