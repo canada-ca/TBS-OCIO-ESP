@@ -47,7 +47,7 @@ Hybrid Work (office + remote) Reference Architecture
 
 > [[Commercial Internet]{.underline}][21]
 >
-> [[Cellular network (optional)]{.underline}][22]
+> [[8.1 Cellular network (optional)]][22]
 >
 > [[GCSI (optional)]{.underline}][23]
 
@@ -57,7 +57,7 @@ Hybrid Work (office + remote) Reference Architecture
 >
 > [[Office 365]{.underline}][26]
 >
-> [[GC Secret Infrastructure (GCSI)]{.underline}][27]
+> [[GC Secret Infrastructure (GCSI)][27]
 
 # Purpose 
 
@@ -231,7 +231,7 @@ The GCSI is the location of secret applications and can only be accessed by GCSI
 
 An ISP is a commercial entity, such as a tele-com or low earth orbit satellite provider, who provides access to the internet.
 
-## Cellular Network Provider
+## 8.1 Cellular Network Provider
 
 A cellular network provider is a commercial entity, such as a tele-com, who broadcasts a cellular signal.
 
