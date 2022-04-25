@@ -97,6 +97,10 @@ Standard on Information Technology Provisions
 
 Illustrated, the Hybrid Work Architecture is below.
 
+<img src="Hybrid Work Ref Arch Diagram.png"
+     alt="Reference Architecture Overview"
+     style="float: left; margin-right: 10px;" />
+
 ![](Hybrid Work Ref Arch Diagram.png)
 
 # 5. User Technology<a name="user_technology"></a>
