@@ -1,6 +1,7 @@
----
-title: "[]{#_fmwfqx50l1r8 .anchor}Hybrid Work (office + remote) Reference Architecture"
----
+
+Hybrid Work (office + remote) Reference Architecture
+====================================================
+
 
 # Table of Contents
 
