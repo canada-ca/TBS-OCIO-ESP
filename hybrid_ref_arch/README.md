@@ -47,7 +47,7 @@ Hybrid Work (office + remote) Reference Architecture
 
 > [[Commercial Internet]{.underline}][21]
 >
-> [[8.1 Cellular network (optional)]][22]
+> [8.1 Cellular network (optional)][22]
 >
 > [[GCSI (optional)]{.underline}][23]
 
