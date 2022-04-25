@@ -87,17 +87,17 @@ The Directive on Service and Digital contains two Standards that articulate the 
 
 Standard on Information Technology User and Workpoint Profiles
 
-[[https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32601]{.underline}][28]
+[[https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32601]](https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32601)
 
 Standard on Information Technology Provisions
 
-[[https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32674]{.underline}][29]
+[[https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32674]](https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32674)
 
 # 4. Reference Architecture Overview<a name="ref_arch_overview"></a>
 
 Illustrated, the Hybrid Work Architecture is below.
 
-![][30]
+MA?GE HERe. media/image1.png {width="6.270138888888889in" height="3.527083333333333in"}
 
 # 5. User Technology<a name="user_technology"></a>
 
