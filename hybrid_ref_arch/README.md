@@ -65,7 +65,7 @@ Hybrid Work (office + remote) Reference Architecture
 
 # 1. Purpose <a name="purpose"></a>
 
-The purpose of this document is to provide guidance to departments and agencies on the technology that should be deployed to hybrid work (remote + GC offices) and further articulate the technology aspects of the [[Directive on Service and Digital]{.underline}][28].
+The purpose of this document is to provide guidance to departments and agencies on the technology that should be deployed to hybrid work (remote + GC offices) and further articulate the technology aspects of the [Directive on Service and Digital](https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32601).
 
 # 2. Context<a name="content"></a>
 
@@ -87,17 +87,17 @@ The Directive on Service and Digital contains two Standards that articulate the 
 
 Standard on Information Technology User and Workpoint Profiles
 
-[[https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32601]](https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32601)
+[https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32601](https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32601)
 
 Standard on Information Technology Provisions
 
-[[https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32674]](https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32674)
+[https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32674](https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32674)
 
 # 4. Reference Architecture Overview<a name="ref_arch_overview"></a>
 
 Illustrated, the Hybrid Work Architecture is below.
 
-MA?GE HERe. media/image1.png {width="6.270138888888889in" height="3.527083333333333in"}
+![](Hybrid Work Ref Arch Diagram.png)
 
 # 5. User Technology<a name="user_technology"></a>
 
