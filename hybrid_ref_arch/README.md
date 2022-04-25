@@ -213,9 +213,9 @@ Commercial cellular network may be broadcast from outside of the GC facility. Pi
 
 For national security scenarios, where required, the GC Secret Infrastructure (GCSI) will be deployed into GC facilities. The decision to deploy GCSI in a GC facility is driven by the tenants' operational requirements.
 
-8.  # External, Supporting, Services
+# External, Supporting, Services
 
-    1.  ## GC Wide Area Network (GC WAN)
+## GC Wide Area Network (GC WAN)
 
 The GC WAN is the location of applications hosted within GC data centres. It is also the gateway for the GC SRA service. Connections to the GC WAN are over commercial internet with the addition of SRA (VPN).
 
