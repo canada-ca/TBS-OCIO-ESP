@@ -95,13 +95,12 @@ Standard on Information Technology Provisions
 
 # 4. Reference Architecture Overview<a name="ref_arch_overview"></a>
 
-Illustrated, the Hybrid Work Architecture is below.
+The Hybrid Work Reference Architecture is illustrated below.
 
 <img src="Hybrid Work Ref Arch Diagram.png"
      alt="Reference Architecture Overview"
      style="float: left; margin-right: 10px;" />
 
-![](Hybrid Work Ref Arch Diagram.png)
 
 # 5. User Technology<a name="user_technology"></a>
 
@@ -243,32 +242,3 @@ An ISP is a commercial entity, such as a tele-com or low earth orbit satellite p
 
 A cellular network provider is a commercial entity, such as a tele-com, who broadcasts a cellular signal.
 
-  [1]: #purpose
-  [2]: #context
-  [3]: #policy-references
-  [4]: #user-technology
-  [5]: #gc-user-vs-gc-field-user
-  [6]: #portable-compute-device
-  [7]: #office-365-account
-  [8]: #gc-secure-remote-access-account
-  [9]: #telephony-services
-  [10]: #internal-credential
-  [11]: #facility-technology
-  [12]: #home-office-remote
-  [13]: #gc-facility
-  [14]: #workpoints
-  [15]: #collaboration-spaces
-  [16]: #gcsi-terminal-optional
-  [17]: #fixed-line-telephones-limitedoptional
-  [18]: #printer-devices
-  [19]: #fixed-compute-devices-limitedoptional
-  [20]: #networking
-  [21]: #commercial-internet
-  [23]: #gcsi-optional
-  [24]: #external-supporting-services
-  [25]: #gc-wide-area-network-gc-wan
-  [26]: #office-365
-  [27]: #gc-secret-infrastructure-gcsi
-  [28]: https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32601
-  [29]: https://www.tbs-sct.canada.ca/pol/doc-eng.aspx?id=32674
-  [30]: media/image1.png {width="6.270138888888889in" height="3.527083333333333in"}
