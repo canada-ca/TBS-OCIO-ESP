@@ -5,59 +5,61 @@ Hybrid Work (office + remote) Reference Architecture
 
 <h1>Table of Contents</h1>
 
-[[Purpose]{.underline}][1]
+[1. Purpose][1]
 
-[[Context]{.underline}][2]
+[2. Context][2]
 
-[[Policy References]{.underline}][3]
+[3. Policy References][3]
 
-[[User Technology]{.underline}][4]
+[5. User Technology][4]
 
-> [[GC User vs GC Field User]{.underline}][5]
+> [5.1. GC User vs GC Field User][5]
 >
-> [[Portable Compute Device]{.underline}][6]
+> [5.2. Portable Compute Device][6]
 >
-> [[Office 365 Account]{.underline}][7]
+> [5.3. Office 365 Account][7]
 >
-> [[GC Secure Remote Access Account]{.underline}][8]
+> [5.4. GC Secure Remote Access Account][8]
 >
-> [[Telephony Services]{.underline}][9]
+> [5.5. Telephony Services][9]
 >
-> [[Internal Credential]{.underline}][10]
+> [5.6. Internal Credential][10]
 
-[[Facility Technology]{.underline}][11]
+[6. Facility Technology][11]
 
-> [[The Home Office]{.underline}][12]
+> [6.1. The Home Office][12]
 >
-> [[GC Facility]{.underline}][13]
+> [6.2. GC Facility][13]
 >
-> [[Workpoints]{.underline}][14]
+> [6.2.1. Workpoints][14]
 >
-> [[Collaboration Spaces]{.underline}][15]
+> [6.2.2. Collaboration Spaces][15]
 >
-> [[GCSI Terminal (optional)]{.underline}][16]
+> [6.2.3. GCSI Terminal (optional)] [16]
 >
-> [[Fixed Line Telephones (limited/optional)]{.underline}][17]
+> [6.2.4. Fixed Line Telephones (limited/optional)][17]
 >
-> [[Printer Devices]{.underline}][18]
+> [6.2.5. Printer Devices][18]
 >
-> [[Fixed Compute Devices (limited/optional)]{.underline}][19]
+> [6.2.6. Fixed Compute Devices (limited/optional)][19]
 
-[[Networking]{.underline}][20]
+[7. Networking][20]
 
-> [[Commercial Internet]{.underline}][21]
+> [7.1. Commercial Internet][21]
 >
-> [8.1 Cellular network (optional)](#cellular-network-optional)
+> [7.2. Cellular network (optional)](#cellular-network-optional)
 >
-> [[GCSI (optional)]{.underline}][23]
+> [7.3. GCSI (optional)][23]
 
-[[External, Supporting, Services]{.underline}][24]
+[8. External, Supporting, Services][24]
 
-> [[GC Wide Area Network (GC WAN)]{.underline}][25]
+> [8.1. GC Wide Area Network (GC WAN)][25]
 >
-> [[Office 365]{.underline}][26]
+> [8.2. Office 365][26]
 >
-> [[GC Secret Infrastructure (GCSI)][27]
+> [8.3. GC Secret Infrastructure (GCSI)][27]
+> 
+> [8.4. Cellular Network Provider](#cellular_network_provider)
 
 # Purpose 
 
@@ -205,7 +207,7 @@ With GC Secure Remote Access having been scaled to support the pandemic, there i
 
 Commercial internet must be, to the maximum extent possible, deployed wirelessly and broadcast through-out the building. At a minimum, two SSIDs should be available. The first will restrict connectivity to GC devices and the second SSID will be for guest devices and be appropriately throttled. GC devices include compute devices, conferencing/collaboration devices, printers, and smartphones to support wi-fi calling.
 
-## <a name="cellular-network-optional">8.1 Cellular network (optional)</a>
+## 8.1 Cellular network (optional)<a name="cellular-network-optional"></a>
 
 Commercial cellular network may be broadcast from outside of the GC facility. Pico cells or in-facility cellular networks will no longer be deployed. In cases where cellular network performance is insufficient to support smartphones, wi-fi calling will be sufficient for supporting smartphones within GC facilities.
 
@@ -231,7 +233,7 @@ The GCSI is the location of secret applications and can only be accessed by GCSI
 
 An ISP is a commercial entity, such as a tele-com or low earth orbit satellite provider, who provides access to the internet.
 
-## 8.1 Cellular Network Provider
+## 8.4. Cellular Network Provider<a name="cellular_network_provider"></a>
 
 A cellular network provider is a commercial entity, such as a tele-com, who broadcasts a cellular signal.
 
