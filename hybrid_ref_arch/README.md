@@ -1,5 +1,5 @@
 
-Hybrid Work (office + remote) Reference Architecture
+GC Hybrid Work (office + remote) Reference Architecture
 ====================================================
 
 
