@@ -8,3 +8,5 @@ The Azure crosswalk can be found in the form of an [Excel spreadsheet](AzureCros
 
 The checks are taken, primarily, from the Azure Defender [compliance checks for FedRAMP](https://docs.microsoft.com/en-us/azure/governance/policy/samples/fedramp-moderate)
 
+## AWS
+Coming next
