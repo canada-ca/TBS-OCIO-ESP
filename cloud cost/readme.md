@@ -1,7 +1,8 @@
 
 Original PDFs with images can be found here:
 
-https://github.com/canada-ca/TBS-OCIO-ESP/blob/master/cloud%20cost/GC%20Cloud%20Cost%20Management%20Playbook%20Published%20July%202022.pdf
+[English](https://github.com/canada-ca/TBS-OCIO-ESP/blob/master/cloud%20cost/GC%20Cloud%20Cost%20Management%20Playbook%20Published%20July%202022.pdf)
+[francais](https://github.com/canada-ca/TBS-OCIO-ESP/blob/master/cloud%20cost/Guide%20sur%20la%20gestion%20des%20cou%CC%82ts%20de%20l%E2%80%99informa%20tique%20en%20nuage%20du%20gc%20publie%20julliet%202022.pdf)
 
 [(francais)](#francais)
 
