@@ -1,4 +1,9 @@
 
+Original PDFs with images can be found here:
+
+https://github.com/canada-ca/TBS-OCIO-ESP/blob/master/cloud%20cost/GC%20Cloud%20Cost%20Management%20Playbook%20Published%20July%202022.pdf
+
+[(francais)](#francais)
 
 GC Cloud Cost Management Playbook
 =================================
@@ -463,7 +468,7 @@ To enable departmental monitoring and governance over cloud spend, StatCan has i
 
 
 
-Guide sur la gestion des coûts de l'informatique en nuage du gouvernement du Canada
+<a name="francais"></a>Guide sur la gestion des coûts de l'informatique en nuage du gouvernement du Canada
 -----------------------------------------------------------------------------------
 
 # Objet
