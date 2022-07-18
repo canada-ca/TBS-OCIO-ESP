@@ -66,7 +66,8 @@ Managing cloud costs is not about driving to the lowest cost, but instead applyi
 
 This document contains plays that organizations should undertake to exercise due diligence over cloud spend. This is not a comprehensive set of practices, but instead represent suggested, minimum practices.
 
-
+|No.          |Play|
+|-------------|----|
 |01           |Accountability|
 |02           |Visibility & Transparency|
 |03           |Cost attribution|
