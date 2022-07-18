@@ -29,24 +29,16 @@ The table below assumes that the pay-as-you-go (PAYG) model for cloud has been m
 
 
 
+ | Traditional IT Models  |  Cloud Models |
+ |------------------------|---------------|
+ |Traditional IT relies on a Capital Expense model (CapEX) where goods (software, hardware, facilities) are bought, maintained as an asset for a determined life span.|Cloud service are an Operational Expense, much like a utility such as electricity or municipal water, the degree of usage drives cost.|
+|The degree to which an asset (hardware and software) is consumed has no material impact on cost. Once a purchase is made, the costs are sunk into the asset and there are no mechanisms to optimize those costs after purchase.|Consuming cloud resources results in costs. Turning off the usage of a service results in cost avoidance.|
+|Traditional investments are typically periodic associated with the replacement of aging assets. |Cloud costs are in perpetuity until the service is turned off.|
+|Traditional models are primarily fixed costs.|Cloud costs are variable.|
+|Traditional costs reporting is periodic, often annual as costs are largely fixed.||Cloud costs are real-time as they are variable|
+|Traditional models have straight forward cost driver. |Cloud bills are complex often comprised of micro-transactions tracking each usage.|
+|Purchasing of capital assets are centrally gated by procurement and financial organizations.| Cloud purchases are decentralized being made by delivery teams delivering digital products with the cloud.|
 
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  Traditional IT Models                                                                                                                                                                                                             Cloud Models
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ----------------------------------------------------------------------------------------------------------------------------------------
-  Traditional IT relies on a Capital Expense model (CapEX) where goods (software, hardware, facilities) are bought, maintained as an asset for a determined life span.                                                              Cloud service are an Operational Expense, much like a utility such as electricity or municipal water, the degree of usage drives cost.
-
-  The degree to which an asset (hardware and software) is consumed has no material impact on cost. Once a purchase is made, the costs are sunk into the asset and there are no mechanisms to optimize those costs after purchase.   Consuming cloud resources results in costs. Turning off the usage of a service results in cost avoidance.
-
-  Traditional investments are typically periodic associated with the replacement of aging assets.                                                                                                                                   Cloud costs are in perpetuity until the service is turned off.
-
-  Traditional models have fixed costs.                                                                                                                                                                                              Cloud costs are variable.
-
-  Traditional costs reporting is periodic, often annual as costs are largely fixed.                                                                                                                                                 Cloud costs are real-time as they are variable
-
-  Traditional models have straight forward cost driver.                                                                                                                                                                             Cloud bills are complex often comprised of micro-transactions tracking each usage.
-
-  Purchasing of capital assets are centrally gated by procurement and financial organizations.                                                                                                                                      Cloud purchases are decentralized being made by delivery teams delivering digital products with the cloud.
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   
   
 
