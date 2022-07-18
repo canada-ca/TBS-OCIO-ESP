@@ -3,7 +3,7 @@
 GC Cloud Cost Management Playbook
 =================================
 
-#Purpose
+# Purpose
 
 The purpose of this document is to:
 
@@ -13,15 +13,15 @@ The purpose of this document is to:
 
 -   Providing stakeholders with an overview of cloud cost management including financial & procurement officers
 
-#Context
+# Context
 
 Cloud computing provides on-demand, pay-as-you-go models for computing, storage, network, platforms, and business solutions. Cloud costs are fluid and directly related to the unit price of the resources multiplied by usage (cost = price x usage). This represents a fundamental shift from traditional, fixed, IT consumption models where the primary cost is associated with the purchase of hardware or licensing of software. In a cloud model, cost is a direct input into application architecture. Cloud spending is much more dynamic than traditional IT models as usage changes result in immediate cost changes. The feedback loop between usage and cost is immediate. Traditional spend controls rely heavily on process gates with people-intensive oversight. These traditional practices are a poor fit for a cloud environment as they can negatively impact the agility delivery teams desire when using cloud and lead to disrupted business value. Finance and procurement officers are not gatekeepers to cloud spend, but support delivery teams in establishing budgets for the delivery of their products. Delivery teams are directly responsible for cloud costs and must be prepared to track, analyze, and optimize the costs associated with their products and the usage of those products. These practices are often known as 'FinOps'. FinOps is a set of practices that encourage management & optimization of cloud spending without disrupting the agility and speed of cloud delivery.
 
-#FinOps
+# FinOps
 
 Often the term 'FinOps' is applied to cloud cost management. FinOps is a portmanteau of Financial Operations. FinOps is supported by a community lead [FinOps Foundation]. The foundation and technology consultancies have published a library of information on this topic. This guidance should not be read in isolation of that library of material. FinOps is an evolving area as cloud itself evolves.
 
-#Traditional Models Contrasted with Cloud
+# Traditional Models Contrasted with Cloud
 
 One can thinking about the shifting from traditional IT models to a cloud model using the analogy of shifting from digging and maintaining your own well vs connecting to the municipal water supply. Both deliver water, but each has a different model behind it. With a well, you must take on the responsibility of purchasing equipment, engineering, and building the well, and be responsible for maintaining the pumps and quality of the water. With a municipal water supply, you simply pay a monthly metered water consumption charge, and you are abstracted from the assets required to deliver the water. This, in many ways, is the shift that cloud has introduced. Traditional IT models, like digging wells, is a capital and asset intense delivery model. Cloud, like municipal water supply, turns the supply into a commoditized service.
 
@@ -50,7 +50,7 @@ The table below assumes that the pay-as-you-go (PAYG) model for cloud has been m
   
   
 
-#Optimizing Cloud Costs
+# Optimizing Cloud Costs
 
 When contrasted against traditional IT models, cloud allows for more options for shaping spend. Levers in the form of optimization decisions can be taken to reduce waste and right-size consumption. Conversely, decisions can be made to spend more to get greater speed and scaling. Optimization choices can be plotted on a simple quadrant to illustrate the trade offs between time and cost as seen in figure 2. Optimization is focused on reducing waste and shaping spend. Continuous optimization may not lead to reductions in overall cloud spent over the long-term. Often, organizations continue to grow their cloud usage with time in the form of new services, new data, and new user experiences. The increased digitization of an organization's business will, over time, result in an overall increase in cloud spend. Optimization can help ensure that spend is well governed and not resulting in needless waste.
 
@@ -70,7 +70,7 @@ Driving to the lowest cost possible can impact business value. Delivery teams an
 
 Managing cloud costs is not about driving to the lowest cost, but instead applying financial due diligence while driving business value for the organization.
 
-#Plays
+# Plays
 
 This document contains plays that organizations should undertake to exercise due diligence over cloud spend. This is not a comprehensive set of practices, but instead represent suggested, minimum practices.
 
@@ -94,11 +94,11 @@ This document contains plays that organizations should undertake to exercise due
   09           Set business metrics
   -----------------------------------------------------------------------
 
-#01 Accountability
+# 01 Accountability
 
 
 
-##Objective
+## Objective
 
 Delivery teams[^1] must be ready to assume cost management and optimization responsibilities. The implications of architectural designs and provisioning choices need to be understood by delivery team members.
 
@@ -124,7 +124,7 @@ Delivery teams[^1] must be ready to assume cost management and optimization resp
 
 
 
-#02 Visibility & Transparency
+# 02 Visibility & Transparency
 
 
 ## Objective
@@ -155,7 +155,7 @@ Empower delivery teams with self-service access to cost reports. Delivery teams 
 
 -   Check that the developer and architect roles also have access to the billing console and APIs
 
-##03 Cost Attribution
+# 03 Cost Attribution
 
 
 ## Objective
@@ -202,7 +202,7 @@ Establish a structure for tagging cloud resources and attributing costs back to 
 
 -   Use service policies to enforce mandatory cost allocation tags
 
-#04 Budgeting
+# 04 Budgeting
 
  
 
@@ -234,7 +234,7 @@ Delivery teams establish product budgets in collaboration with financial officer
 
 -   Check that the cloud service providers' features for setting and alerting on budgets have been configured
 
-#05 Policy & Alerting
+# 05 Policy & Alerting
 
 
 
@@ -266,7 +266,7 @@ Use alerts to provide early warning when key financial milestones are met, such 
 
 
 
-#06 Optimization
+# 06 Optimization
  
 
 ## Objectives
@@ -313,7 +313,7 @@ Delivery teams should continuously analyze opportunities for optimizing service 
 
 -   Report on the number of compute instance and storage provisioned and trends over time.
 
-#07 Remediation
+# 07 Remediation
  
 
 ## Objectives
@@ -387,7 +387,7 @@ Design and implement a governance to review and act upon cloud cost analysis
 
 -   <https://aws.amazon.com/blogs/enterprise-strategy/introducing-finops-excuse-me-devsecfinbizops/>
 
-#09 Business Metrics
+# 09 Business Metrics
 
 
 ## Objectives
@@ -410,7 +410,7 @@ Increased digitization of services and automation will drive up cloud costs over
 
 -   <https://aws.amazon.com/blogs/aws-cloud-financial-management/unit-metrics-in-practice-lessons-learned/>
 
-#Cases Studies
+# Cases Studies
 
 ## Treasury Board Secretariat -- Optimization with Reserved Instances
 
