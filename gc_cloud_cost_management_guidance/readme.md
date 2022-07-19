@@ -458,13 +458,7 @@ To enable departmental monitoring and governance over cloud spend, StatCan has i
 
 [^1]: Delivery Team refers to a multi-disciplinary team responsible for delivering a product using cloud. Deliver Team is used to denote the shift from organizing as functional silos towards multi-disciplinary teams made up of developers who build and run the product, architects, security, product managers, and user interface experts.
 
-  [FinOps Foundation]: https://www.finops.org
-  [1]: media/image1.png {width="6.5in" height="3.65625in"}
-  [2]: media/image3.png {width="6.5in" height="3.65625in"}
-  [3]: media/image5.png {width="5.921875546806649in" height="3.331055336832896in"}
-  [4]: file:///C:\Users\MBEGIN\AppData\Local\Microsoft\Windows\INetCache\Content.Outlook\BOXMJH3I\finops-org.skilljar.com
-  [5]: media/image7.png {width="6.5in" height="2.0833333333333335in"}
-  [6]: media/image8.png {width="6.125in" height="3.4453127734033244in"}
+
 
 
 
@@ -912,13 +906,6 @@ Pour assurer le contrôle et la gouvernance ministériels des dépenses liées a
 
 [^1]: L'équipe de livraison fait référence à une équipe multidisciplinaire responsable de la livraison d'un produit à l'aide du nuage. Le terme « équipe de livraison » est utilisé pour désigner le passage d'une organisation en silos fonctionnels vers des équipes multidisciplinaires composées de développeurs qui élaborent et qui exécutent le produit, d'architectes, de responsables de la sécurité, de chefs de produit et d'experts de l'interface utilisateur.
 
-  [Fondation des OpFin]: https://www.finops.org
-  [1]: media/image1.png {width="0.4111111111111111in" height="0.4111111111111111in"}
-  [2]: media/image3.png {width="6.5in" height="3.65625in"}
-  [3]: media/image5.png {width="6.5in" height="3.65625in"}
-  [4]: media/image7.png {width="5.921875546806649in" height="3.331055336832896in"}
-  [5]: file:///C:\Users\MBEGIN\AppData\Local\Microsoft\Windows\INetCache\Content.Outlook\BOXMJH3I\finops-org.skilljar.com
-  [6]: media/image9.png {width="6.5in" height="2.0833333333333335in"}
-  [7]: media/image10.png {width="6.125in" height="3.4453127734033244in"}
+
 
 
