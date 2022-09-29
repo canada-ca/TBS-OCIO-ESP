@@ -29,97 +29,208 @@ steps:
 
       function Get-QueryResultsTable($token, $odataQuery)
       {
-        if ($null -eq $token) 
-        {
-            throw('Missing token value')
-        }
-        if ($null -eq $odataQuery) 
-        {
-            throw('Missing OData query')
-        }
-        $authHeader = @{ 'Authorization' = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":" + $token)) }
-        $result = Invoke-RestMethod -Method Get -Uri $odataQuery -Headers $authHeader
-        $meetings = $result.value
-        $wikicontent = "{{OCIO_GCEARB_Header}}`n<multilang>`n"
-        $englishcontent = "@en|__NOTOC__`n"
-        $frenchcontent = "@fr|__NOTOC__`n"
-        $frCulture = New-Object system.globalization.cultureinfo('fr-CA')
-
-        # GCConnex Link
-        $englishcontent += "<h3> Records of discussions and GC EARB presentations are posted on the: [https://gcconnex.gc.ca/groups/profile/29755185/gc-enterprise-architecture-review-board-comite-dexamen-de-larchitecture-dentreprise-du-gc?language=en GC Enterprise Architecture Review Board GCconnex page]'''.''' </h3>"
-        $frenchcontent += "<h3> Les comptes rendus des discussions et des présentations du CEAI GC sont affichés sur: [https://gcconnex.gc.ca/groups/profile/29755185/gc-enterprise-architecture-review-board-comite-dexamen-de-larchitecture-dentreprise-du-gc?language=fr Comité d’examen de l’architecture intégrée du GC]'''.''' </h3>"
-
-        # Table Start
-        $englishcontent += "</h2>`n<table class='wikitable sortable nowrap' style='width:100%'>";
-        $frenchcontent += "</h2>`n<table class='wikitable sortable nowrap' style='width:100%'>";
-
-        # Column Headers
-        $englishcontent += "`n<tr>`n<th>Date</th>`n<th>Item for Presentation</th>`n<th>Presenter</th>`n<th>Purpose</th>`n</tr>"
-        $frenchcontent += "`n<tr>`n<th>Date</th>`n<th>Points présentés</th>`n<th>Présentateur</th>`n<th>Objet</th>`n</tr>"
-
-        foreach($meeting in $meetings)
-        {
-            $iteration = $meeting.Iteration.IterationPath.Split('\')[1]
-            $date = (Get-Date -Date "$iteration").ToString('yyyy/MM/dd')
-            $dateFr = (Get-Date -Date "$iteration").ToString('yyyy/MM/dd', $frCulture)
-            
-            $meetingItems = $meeting.Links.TargetWorkItem | Sort-Object -Property BacklogPriority
-
-            # Go over children
-            foreach($meetingItem in $meetingItems)
-            {
-
-                # Wrap text in Presenter Column
-                if ($null -ne $meetingItem.Custom_Department) {
-                    if ($meetingItem.Custom_Department.Contains(';')) {
-                        $departments = $meetingItem.Custom_Department.Replace(';', '<br>')
-                    } else {
-                        $departments = $meetingItem.Custom_Department
-                    }
-                } else {
-                    $departments = ""
-                }
-
-                # Cancelled Meeting Entries
-                if ($meeting.State -eq 'Cancelled')
-                {
-                    $englishcontent += "`n<tr>`n<td style='width:10%'>" + $date + "</td>`n<td style='width:70%'>"  + "<span style='color:red;'>MEETING CANCELED</span>" + "</td>`n<td style='width:5%'>" + $departments + "</td>`n<td style='width:15%'>" + $meetingItem.WorkItemType + "</td>`n</tr>"
-                    $frenchcontent += "`n<tr>`n<td style='width:10%'>" + $dateFr + "</td>`n<td style='width:70%'>"   + "<span style='color:red;'>RÉUNION ANNULÉE</span>" + "</td>`n<td style='width:5%'>" + $departments+ "</td>`n<td style='width:15%'>" + $meetingItem.WorkItemType + "</td>`n</tr>"
-                } 
-
-                # Regular Meeting Entries
-                if ($meetingItem.State -eq 'Cancelled')
-                {
-                    continue
-                }
-                
-                $englishcontent += "`n<tr>`n<td style='width:10%'>" + $date + "</td>`n<td style='width:70%'>"  + $meetingItem.Title + "</td>`n<td style='width:5%'>" + $departments + "</td>`n<td style='width:15%'>" + $meetingItem.WorkItemType + "</td>`n</tr>"
-        
-            
-                if ($meetingItem.WorkItemType -eq 'Endorsement')
-                {
-                    $purpose = 'Approbation'
-                    
-                }
-                elseif ($meetingItem.WorkItemType -eq 'Consent Item')
-                {
-                    $purpose = 'Consentement'
-                } 
-                else
-                {
-                    $purpose = $meetingItem.WorkItemType
-                }
-                $frenchcontent += "`n<tr>`n<td style='width:10%'>" + $dateFr + "</td>`n<td style='width:70%'>"  + $meetingItem.Title + "</td>`n<td style='width:5%'>" + $departments + "</td>`n<td style='width:15%'>" + $purpose + "</td>`n</tr>"
-            }
-        }
-
-        $englishcontent += "`n</table>`n" 
-        $frenchcontent += "`n</table>`n"
-
-        $wikicontent += $englishcontent
-        $wikicontent += $frenchcontent
-        $wikicontent += "`n</multilang>`n"
-        return $wikicontent
+          if ($null -eq $token) 
+          {
+              throw('Missing token value')
+          }
+          if ($null -eq $odataQuery) 
+          {
+              throw('Missing OData query')
+          }
+          $authHeader = @{ 'Authorization' = 'Basic ' + [Convert]::ToBase64String([Text.Encoding]::ASCII.GetBytes(":" + $token)) }
+          $result = Invoke-RestMethod -Method Get -Uri $odataQuery -Headers $authHeader
+          $meetings = $result.value
+          $wikicontent = "{{OCIO_GCEARB_Header}}`n<multilang>`n"
+          $englishcontent = "@en|__NOTOC__`n"
+          $frenchcontent = "@fr|__NOTOC__`n"
+          $frCulture = New-Object system.globalization.cultureinfo('fr-CA')
+      
+          # GCConnex Link
+          $englishcontent += "<h3> Records of discussions and GC EARB presentations are posted on the: [https://gcconnex.gc.ca/groups/profile/29755185/gc-enterprise-architecture-review-board-comite-dexamen-de-larchitecture-dentreprise-du-gc?language=en GC Enterprise Architecture Review Board GCconnex page]'''.''' </h3>"
+          $frenchcontent += "<h3> Les comptes rendus des discussions et des présentations du CEAI GC sont affichés sur: [https://gcconnex.gc.ca/groups/profile/29755185/gc-enterprise-architecture-review-board-comite-dexamen-de-larchitecture-dentreprise-du-gc?language=fr Comité d’examen de l’architecture intégrée du GC]'''.''' </h3>"
+      
+          # Table Start
+          $englishcontent += "</h2>`n<table class='wikitable sortable nowrap' style='width:100%'>";
+          $frenchcontent += "</h2>`n<table class='wikitable sortable nowrap' style='width:100%'>";
+      
+          # Column Headers
+          $englishcontent += "`n<tr>`n<th>Date</th>`n<th>Item for Presentation</th>`n<th>Presenter</th>`n<th>Purpose</th>`n</tr>"
+          $frenchcontent += "`n<tr>`n<th>Date</th>`n<th>Points présentés</th>`n<th>Présentateur</th>`n<th>Objet</th>`n</tr>"
+      
+          # Dictionary of English to French Departments - English Departments are Key elements, French Departments are Value element
+          $d = @{
+              'TBS' = 'SCT';
+              'SSC' = 'SPC';
+              'AAFC'= 'AAC';
+              'ACOA'= 'APECA';
+              'ASC' = 'NAC';
+              'ATSSC' = 'SCDATA';
+              'CAS' = 'SATJ';
+              'CB' = 'CDA';
+              'CBSA' = 'ASFC';
+              'CCOHS' = 'CCHST';
+              'CED' = 'DEC';
+              'CEIC'= 'CAEC';
+              'CFIA' = 'ACIA';
+              'CGC' = 'CCG';
+              'CHRC' = 'CCDP';
+              'CER' = 'REC';
+              'CICS' = 'SCICS';
+              'CIRNAC' = 'RCAANC';
+              'CNSC' = 'CCSN';
+              'CRA' = 'ARC';
+              'CRCC' = 'CCETP';
+              'CRTC' = 'CRTC'; #same
+              'CSA' = 'ASC';
+              'CSC' = 'SCC';
+              'CSIS' = 'SCRS';
+              'CSPS' = 'EFPC';
+              'CTA' = 'OTC';
+              'DFO' = 'MPO';
+              'DND' = 'MDN';
+              'ECCC' = 'ECCC'; #same
+              'ERC' = 'CEE'; 
+              'ESDC' = 'EDSC'; #same
+              'FCAC' = 'ACFC';
+              'FedDev Ontario' = 'FedDev Ontario'; #same
+              'FIN' = 'FIN'; #same
+              'FINTRAC' = 'CANAFE';
+              'FJA' = 'CMF';
+              'FPCC' = 'CPAC';
+              'GAC' = 'AMC';
+              'HC' = 'SC';
+              'IAAC' = 'AEIC';
+              'INFC' = 'INFC'; #same
+              'IRB' = 'CISR';
+              'IRCC' = 'IRCC'; #same
+              'ISC' = 'SAC'; 
+              'ISED' = 'ISDE';
+              'JUS' = 'JUS'; #same
+              'LAC' = 'BAC';
+              'MGERC' = 'CEEGM';
+              'MPCC' = 'CPPM';
+              'NBC' = 'CCBN';
+              'NFB' = 'ONF';
+              'NPA' = 'APN';
+              'NRC' = 'CNRC';
+              'NRCan' = 'RNCan';
+              'NSERC' = 'CRSNG';
+              'NSICOP' = 'CPSNR';
+              'NSIRA' = 'OSSNR';
+              'OCI' = 'BEC';
+              'OSFI' = 'BSIF';
+              'PBC' = 'CLCC';
+              'PC' = 'PC'; #same
+              'PS' = 'SP';
+              'PCH' = 'PPC';
+              'PCO' = 'BCP';
+              'PHAC' = 'ASPC';
+              'PMPRB' = 'CEPMB';
+              'PSC' = 'CFPC';
+              'PSPC' = 'SPAC';
+              'RCMP' = 'GRC';
+              'SSHRC' = 'CRSH';
+              'TC' = 'TC'; #same
+              'TSB' = 'BST';
+              'VAC' = 'ACC';
+              'WAGE' = 'FEGC';
+              <# Find translations - not on canada.ca/en/government/dept.html
+              #>
+              'CCCS' = 'CCCS';
+              'CEAA' = 'CEAA';
+              'CERIA' = 'CERIA';
+              'CHARS' = 'CHARS';
+              'CNEDA' = 'CNEDA';
+              'CSE' = 'CST';
+              'DPP' = 'DPP';
+              'IC'  = 'IC';
+              'InvestInCanada' = 'InvestInCanada';
+              'LCC' = 'LCC';
+              'LDC' = 'LDC';
+              'OGGS' = 'OGGS';
+              'RSSC' = 'RSSC';
+              'STATS' = 'STATS';
+              'WD' = 'WD';
+          }
+      
+          foreach($meeting in $meetings)
+          {
+              $iteration = $meeting.Iteration.IterationPath.Split('\')[1]
+              $date = (Get-Date -Date "$iteration").ToString('yyyy/MM/dd')
+              $dateFr = (Get-Date -Date "$iteration").ToString('yyyy/MM/dd', $frCulture)
+              
+              $meetingItems = $meeting.Links.TargetWorkItem | Sort-Object -Property BacklogPriority
+      
+              # Go over children
+              foreach($meetingItem in $meetingItems)
+              {
+                  # French Title for meetings
+                  $frenchTitle = $meetingItem.Custom_FrenchTitle
+                  if ($null -eq $meetingItem.Custom_FrenchTitle) {
+                      $frenchTitle = $meetingItem.Title
+                  } 
+       
+                  # Wrap text in Presenter Column
+                  if ($null -ne $meetingItem.Custom_Department) {
+                      if ($meetingItem.Custom_Department.Contains(';')) {
+                          $deptList = $meetingItem.Custom_Department.Split(';')
+                      } else {
+                          $deptList = $meetingItem.Custom_Department
+                      }
+                      $frenchDepartments = ''
+                      foreach ($dept in $deptList) {
+                          $frenchDepartments += $d[$dept] + '<br>'
+                      }
+                      $frenchDepartments = $frenchDepartments.TrimEnd('<br>')
+                      $departments = $deptList -Join '<br>'
+                  } else {
+      
+                      $departments = ""
+                      $frenchDepartments = ""
+                  }
+      
+                  # Cancelled Meeting Entries
+                  if ($meeting.State -eq 'Cancelled')
+                  {
+                      $englishcontent += "`n<tr>`n<td style='width:10%'>" + $date + "</td>`n<td style='width:70%'>"  + "<span style='color:red;'>MEETING CANCELED</span>" + "</td>`n<td style='width:5%'>" + $departments + "</td>`n<td style='width:15%'>" + $meetingItem.WorkItemType + "</td>`n</tr>"
+                      $frenchcontent += "`n<tr>`n<td style='width:10%'>" + $dateFr + "</td>`n<td style='width:70%'>"   + "<span style='color:red;'>RÉUNION ANNULÉE</span>" + "</td>`n<td style='width:5%'>" + $frenchDepartments+ "</td>`n<td style='width:15%'>" + $meetingItem.WorkItemType + "</td>`n</tr>"
+                  } 
+      
+                  # Regular Meeting Entries
+                  if ($meetingItem.State -eq 'Cancelled')
+                  {
+                      continue
+                  }
+                  
+                  $englishcontent += "`n<tr>`n<td style='width:10%'>" + $date + "</td>`n<td style='width:70%'>"  + $meetingItem.Title + "</td>`n<td style='width:5%'>" + $departments + "</td>`n<td style='width:15%'>" + $meetingItem.WorkItemType + "</td>`n</tr>"
+          
+                 
+                  # Work Item Type
+                  if ($meetingItem.WorkItemType -eq 'Endorsement')
+                  {
+                      $purpose = 'Approbation'
+                        
+                  }
+                  elseif ($meetingItem.WorkItemType -eq 'Consent Item')
+                  {
+                      $purpose = 'Consentement'
+                  } 
+                  else
+                  {
+                      $purpose = $meetingItem.WorkItemType
+                  }
+                  
+                  $frenchcontent += "`n<tr>`n<td style='width:10%'>" + $dateFr + "</td>`n<td style='width:70%'>"  + $frenchTitle + "</td>`n<td style='width:5%'>" + $frenchDepartments + "</td>`n<td style='width:15%'>" + $purpose + "</td>`n</tr>"
+              }
+          }
+      
+          $englishcontent += "`n</table>`n" 
+          $frenchcontent += "`n</table>`n"
+      
+          $wikicontent += $englishcontent
+          $wikicontent += $frenchcontent
+          $wikicontent += "`n</multilang>`n"
+          return $wikicontent
       }
       
       # Upload to Wiki from https://en.wikiversity.org/wiki/MediaWiki_API/PowerShell
