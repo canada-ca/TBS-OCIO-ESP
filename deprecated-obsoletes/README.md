@@ -1,4 +1,4 @@
-<i>version française ci-dessous</i>
+*version française ci-dessous*
 #Deprecated Government of Canada Technologies
 
 *As of March 31, 2015, the Microsoft XP operating system is discontinued.
