@@ -1,5 +1,5 @@
 <i>version française ci-dessous</i>
-<H1>Deprecated Government of Canada Technologies</H1>
+#Deprecated Government of Canada Technologies
 
 *As of March 31, 2015, the Microsoft XP operating system is discontinued.
 *As of July 14, 2017, Windows Server 2003 is discontinued.
@@ -14,7 +14,7 @@
 *As of April 11, 2023, SharePoint 2013 is discontinued.
 *As of July 14, 2026, SharePoint 2016 is discontinued.
 
-<H1>Technologies obsolètes du gouvernement du Canada</H1>
+#Technologies obsolètes du gouvernement du Canada
 
 *À partir du 31 mars 2015, le système d’exploitation Microsoft XP est obsolète.
 *À partir du 14 juillet 2017, Windows Server 2003 est obsolète.
