@@ -14,7 +14,7 @@
 * As of April 1, 2021, the use of pager devices is discontinued.
 * As of April 11, 2023, SharePoint 2013 is discontinued.
 * As of July 14, 2026, SharePoint 2016 is discontinued.
-* As of July 11, 2017, Microsoft SQL Server 2014 is discontinued
+* As of July 11, 2017, Microsoft SQL Server 2012 is discontinued
 * As of July 9, 2019, Microsoft SQL Server 2014 is discontinued
 * As of July 14, 2026, Microsoft SQL Server 2016 is discontinued
 
